@@ -1,0 +1,74 @@
+//npx playwright test  
+It will execute all the files under tests folder
+
+//npx playwright show-report 
+To get the reports for executed testfiles
+
+
+//npx playwright test HomePage.spec.js --headed
+to execute specific file in headed mode
+
+//npx playwright test HomePage.spec.js --project=chromium --headed
+to execute specific file in headed mode
+ 
+//npx playwright test HomePage.spec.js --project=chromium --headed --debug
+to execute specific file in debug mode
+
+-----------------------------------------------------------------------------------
+//npx playwright codegen
+this is to used to record the testcase adn locate the the elements
+
+//npx playwright codegen --help or //npx playwright codegen -h
+
+//npx playwright codegen -o <FileName> or //npx playwright codefen --output tests/mytest.spec.js
+
+//npx playwright codegen --target<language> // npx playwright codegen --target javascript
+
+//npx playwright codegen -b or //npx playwright codegen --browser chromium
+//npx playwright codegen -b or //npx playwright codegen -b ff
+
+
+------------------------------------------------------------------------------------
+//npx playwright codegen --device "iphone 13"
+
+
+//npx playwright codegen --viewport-size "1280,700"
+
+//npx playwright
+//npx playwright
+//npx playwright
+//npx playwright
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------Interview-----------------------------------
+
+Fixtures
+ 

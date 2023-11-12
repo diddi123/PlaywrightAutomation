@@ -1,0 +1,156 @@
+package.json : node project management file
+playwright.config.js : playwright configuration 
+tests we can all the playwright tests
+
+npm playwirght -v -- return installed version of playwright
+-----------------------------------------------------------
+
+Install :  playwirght extension
+
+1.Check
+
+
+------------------------------------------Drop down------------------------------------------------------
+
+Examples: 
+
+await page.locator('#country').selectOption({label:'India'});
+await page.locator('#country').selectOption('India'); // visible
+await page.locator('#country').selectOption({value:'in'});//value 
+await page.locator('#country').selectOption({index:1});//index
+await page.selectOption('#country','India');
+
+
+Multi select
+await page.selectOption('#country',['india','Us','Russsia']);
+const listcou = page.$$('#country');
+await expect(listcou.length).toBe(10);
+
+//presence
+const listcou = await page.$$('#country').textContent();
+await expect(listcou.include('PAK')).toBeTruthy();
+
+--------------------------------------------Check---------------------------------------------------------
+Examples: 
+
+const locators = ['#UserId1','#UserId2','#UserId3'];
+
+for(const loc of locators ){
+    await page.locator(loc).check();
+}
+
+for(const loc of locators ){
+    if(await page.locator(loc).isChecked()){
+    await page.locator(loc).uncheck();
+    }
+}
+
+Approch-1 
+//Check number of options in a dropdwon
+await expect(page.locator('#country')).toHaveCount(10);
+
+Approch-2
+const locators = page.$$('#country');
+await expect(locators.length).toBe(10);
+
+Approch-3
+const locators = page.locator('#country');
+await expect(content.includes('India')).toBeTruthy();
+
+Approch-4
+const locators = await page.$$('#country');
+let status = false;
+
+for(const locator of locators){
+   // console.log(await locator.textContent())
+   const valueO = await locator.textContent();
+
+   if(valueO.includes('India')){
+    status = true;
+    break;
+   }
+}
+await except(status).toBeTruthy();
+
+Approch-5
+const locators = await page.$$('#country');
+for(const locator of locators){
+   const valueO = await locator.textContent();
+   if(valueO.includes('India')){
+   await page.(locator).selectOption(valueO);
+   }
+}
+
+-----------------------------------Auto suggestions------------------------------------------------------
+
+await page.locator('#src).fill('Andhra Pradesh');
+await page.waitForSelector("//li[contsins(@class,'sc-iwskBi')]/div/text[1]");
+
+const formState = await page.$$('#country');
+
+for(let formSt of formState){
+    const value = await formSt.textContent();
+    console.log(value);
+}
+
+for(let formSt of formState){
+    const value = await formSt.textContent();
+    if(formSt.includes('Andhra')){
+        await formSt.click();
+        break;
+    }
+}
+
+-------------------------------------Mouse Hover---------------------------------------------------------
+
+
+const userName   = await page.locator('ul');
+const userNam1e  = await page.locator('li');
+
+await userName.hover();
+await userNam1e.hover();
+
+
+--------------------------------------doubleClick-------------------------------------------------------
+
+const submit   = await page.locator('//button1');
+const submit1  = await page.locator('//button2');
+
+await submit.dblclick();
+await submit1.dblclick();
+
+--------------------------------------right click--------------------------------------------------------
+
+
+const submit   = await page.locator('//button1');
+
+await submit.click({button : 'right'});
+
+------------------------------------------Allure Reports--------------------------------------------------
+Installation:
+
+npm i -D @playwright/test allure-playwright
+
+
+
+playWright.config.js
+{
+  reporter: "allure-playwright";
+}
+
+------------------------------------------------------
+Windows
+
+set ALLURE_RESULTS_DIR=my-allure-results
+npx playwright test --reporter=line,allure-playwright
+--------------------------------------------------------
+Post execution: 
+
+Generate Allure Report:
+
+allure generate my-allure-results -o allure-report --clean
+
+Open Allure Report:
+allure open allure-report
+
+=================
