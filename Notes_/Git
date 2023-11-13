@@ -1,0 +1,17 @@
+git init
+
+git checkout -b branchName
+
+git status
+
+
+git add all
+
+git status
+
+git commit -m "project files"
+
+git status
+
+git push
+

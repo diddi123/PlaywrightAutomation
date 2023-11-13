@@ -1,0 +1,98 @@
+fill:
+
+await page.locator('').fill('')
+await page.locator('').type('')
+
+await page.fill('#dfg','NameValue')
+await page.type('#dfg','NameValue')
+-------------------------------------------------------------------------------------------------------
+
+Click:
+
+await page.locator('').click();
+await page.click('');
+
+-------------------------------------------------------------------------------------------------------
+Assertions:  https://playwright.dev/docs/test-assertions
+
+Example : 1
+toBeVisible:
+
+const amount = await page.locator('email');
+await expect(amount).toBeVisible();
+------------------------------------------------------------------------------------------------------
+
+toBeChecked:
+
+const maleRadioBtn = await page.locator('#gender-male');
+await maleRadioBtn.click();
+await expect(maleRadioBtn).toBeChecked();
+
+toBeChecked: 
+
+const checkBox = await page.locator('#gender-male');
+await checkBox.click();
+
+await expect(checkBox).toBeChecked();
+
+const checkBoxValue = await expect(checkBox).isChecked().toBeTruthy();//to be checked
+
+const checkBoxValue = await expect(checkBox).isChecked().toBeFalsy();//not be checked
+
+await expect(checkBox).check();
+
+-----------------------------------------------------------------------------------------------
+   toHaveAttribute: 
+
+   const typeAttr = await page.locator('#attebhnj');
+   await expect(typeAttr).toHaveAttribute('type','submit');
+
+   toHaveText:
+   await expect(await page.locator('#attebhnj')).toHaveText('submit');//full text shpuld be there
+
+   toHaveContaintText:
+   await expect(await page.locator('#attebhnj')).toHaveContaintText('sub');// text shpuld be there
+
+   toHaveCount:
+   await expect(await page.locator('#country')).toHaveCount('90');// text shpuld be there
+
+`
+
+negative :
+await expect(await page.locator('#attebhnj')).not.toHaveContaintText('sub');// text shpuld be there
+
+--------------------------------------------------------------------------------------------------------
+Multiple Locators:
+
+await page.waitForSelector('a');
+ const products = await page.$$('a');
+ for(const product of products){
+    const productsValue = product.textContent();
+ }
+
+---------------------------------------------------------------------------------------------------------
+waits:
+
+await page.waitForSelector("Locator");
+
+await page.waitForTimeout(5000);
+
+---------------------------------------------------------------------------------------------------------
+
+Built in locators:
+
+await page.getByAltText('') // in an application attributr with alt then only it is applicable
+await page.getByPlaceholder('Username').fill('welcome@123') // in an application attributr with placeholder then only it is applicable
+await page.getByRole('') // to locatoe implicit and explict attribute
+
+Example : 
+await page.getByRole('button',{type:'button'}).click();
+
+
+// In an application attributr with alt then only it is applicable
+await expect(await page.getByText('UserId1')).toBeVisible();
+
+await page.getByLabel('') // in an application attributr with label then only it is applicable
+await page.getByTestId('') // in an application attributr with data-testId then only it is applicable
+await page.getByTitle('')// title attribute
+---------------------------------------------------------------------------------------------------------
